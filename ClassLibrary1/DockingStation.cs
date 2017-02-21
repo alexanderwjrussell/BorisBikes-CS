@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BorisBikes
 {
@@ -28,7 +26,7 @@ namespace BorisBikes
 
         public void Dock(Bike bike, int location)
         {
-            if ((location - 1) < BikeStore.Length)
+            if ((location) >= BikeStore.Length)
                 throw new Exception("No space exists");
             if (bike == null)
                 throw new Exception("Null is not a valid bike");

@@ -108,7 +108,7 @@ namespace BorisBikes
 
         [Test]
 
-        public void Should_NotBeAbleToDock_OotsideOfLocation()
+        public void Should_NotBeAbleToDock_OutsideOfLocation()
         {
             var dockingStation = new DockingStation(1);
             var bike = new Bike();
