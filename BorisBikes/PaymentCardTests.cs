@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 using NUnit.Framework;
 
 namespace BorisBikes
@@ -38,9 +39,27 @@ namespace BorisBikes
             var card = new PaymentCard();
 
             card.TopUp(10);
-            card.Payment(10);
+            card.MakePayment(10);
 
             Assert.That(card.Balance, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void Should_NotBeAbleToMakePaymentWith_InsufficentFunds()
+        {
+            var card = new PaymentCard();
+
+            card.TopUp(10);
+            
+            Assert.Throws<Exception>(() => card.MakePayment(20));
+        }
+
+        [Test]
+        public void Should_OnlyAcceptMinimumPayment_OfTenPoundsOnTopUp()
+        {
+            var card = new PaymentCard();
+
+            Assert.Throws<Exception>(() => card.TopUp(5));
         }
     }
 }
