@@ -17,12 +17,14 @@ namespace BorisBikes
                 throw new Exception("Station is empty");
             if (BikeStore[location] == null)
                 throw new Exception("Enjoy your AirBike Ride!");
+
             var bike = BikeStore[location];
+
+            bike.bikeLog.GetReleaseTime();
             BikeStore[location] = null;
+
             return bike;
         }
-
-
 
         public void Dock(Bike bike, int location)
         {
@@ -32,16 +34,15 @@ namespace BorisBikes
                 throw new Exception("Null is not a valid bike");
             if (BikeStore[location] != null)
                 throw new Exception("Space is taken. MUPPET!");
-            
 
             BikeStore[location] = bike;
+            bike.bikeLog.GetDockTime();
         }
 
         public void ReportBroken(int location)
         {
             var bike = BikeStore[location];
             bike.BreakBike();
-
         }
     }
 }

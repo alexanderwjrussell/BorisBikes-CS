@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bike.cs" />
+    <Compile Include="BikeLogItem.cs" />
     <Compile Include="DockingStation.cs" />
+    <Compile Include="IGetTime.cs" />
     <Compile Include="Maintenance.cs" />
     <Compile Include="PaymentCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
