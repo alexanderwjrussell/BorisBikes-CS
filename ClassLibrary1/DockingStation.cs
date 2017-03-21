@@ -4,11 +4,13 @@ namespace BorisBikes
 {
     public class DockingStation
     {
-        public Bike[] BikeStore { get; internal set; }
+        public Bike[] BikeStore { get; private set; }
+        public BikeLogItem BikeLogItem { get; private set; }
 
         public DockingStation(int capacity)
         {
             BikeStore = new Bike[capacity];
+            BikeLogItem = new BikeLogItem();
         }
 
         public Bike ReleaseBike(int location)
@@ -20,7 +22,7 @@ namespace BorisBikes
 
             var bike = BikeStore[location];
 
-            bike.bikeLog.GetReleaseTime();
+            BikeLogItem.GetReleaseTime();
             BikeStore[location] = null;
 
             return bike;
@@ -36,7 +38,7 @@ namespace BorisBikes
                 throw new Exception("Space is taken. MUPPET!");
 
             BikeStore[location] = bike;
-            bike.bikeLog.GetDockTime();
+            BikeLogItem.GetDockTime();
         }
 
         public void ReportBroken(int location)

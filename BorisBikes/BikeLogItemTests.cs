@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using NUnit.Framework;
+using Rhino.Mocks;
 
 namespace BorisBikes
 {
@@ -19,7 +20,6 @@ namespace BorisBikes
             Assert.That(bikelog.id, Is.EqualTo(id));
         }
 
-
         [Test]
         public void Should_LogBike_DockTime()
         {
@@ -30,7 +30,7 @@ namespace BorisBikes
             dockingStation.Dock(bike, 0);
             dockingStation.ReleaseBike(0);
 
-            Assert.That(bike.bikeLog.DockTime, Is.EqualTo(DateTime.Now.ToString("HH:mm")));
+            Assert.That(dockingStation.BikeLogItem.DockTime, Is.EqualTo(DateTime.Now.ToString("HH:mm")));
         }
 
         [Test]
@@ -42,8 +42,18 @@ namespace BorisBikes
             dockingStation.Dock(bike, 0);
             dockingStation.ReleaseBike(0);
 
-            Assert.That(bike.bikeLog.ReleaseTime, Is.EqualTo(DateTime.Now.ToString("HH:mm"))); 
+            Assert.That(dockingStation.BikeLogItem.ReleaseTime, Is.EqualTo(DateTime.Now.ToString("HH:mm"))); 
 
         }
+
+//        [Test]
+//        public void Should_Calculate_Duration()
+//        {
+//            var _mockReleaseTime = MockRepository.GenerateMock<DateTime>();
+//            _mockReleaseTime.Stub(x => x.Hour).Return(12);
+//            _mockBikeLogItem.Stub(x => x.ReleaseTime).Return("12:00");
+//
+//            Assert.That(_mockBikeLogItem.Duration, Is.EqualTo(1));
+//        }
     }
 }

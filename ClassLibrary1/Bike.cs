@@ -6,13 +6,11 @@ namespace BorisBikes
     {
         public bool Working { get; private set; }
         public Guid id { get; private set; }
-        public BikeLogItem bikeLog { get; set; }
 
         public Bike()
         {
             Working = true;
             id = Guid.NewGuid();
-            bikeLog = new BikeLogItem();
         }
 
         public void BreakBike()
